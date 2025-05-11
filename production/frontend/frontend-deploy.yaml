@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
         - name: frontend-c
-          image: continue/frontend:test-latest
+          image: continue3010/frontend:test-latest
           env:
             - name: REACT_APP_API
               valueFrom:
