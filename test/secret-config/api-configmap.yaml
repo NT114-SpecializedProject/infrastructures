@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-configmap
+  labels:
+    app: fullstack-microservices
+data:
+  gateway_url: "http://gateway-svc:8080"
+  blog_service_url: "http://blog-microservice-svc:8082"
+  like_service_url: "http://like-microservice-svc:8081"
