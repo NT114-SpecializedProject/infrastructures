@@ -1,41 +1,40 @@
-# like_MICROSERVICE
 apiVersion: v1
 kind: Service
 metadata:
-  name: like-microservice-svc
+  name: user-microservice-svc
   namespace: test
 spec:
   selector:
-    app: like-microservice
+    app: user-microservice
   type: ClusterIP
   ports:
     - protocol: TCP
-      port: 8082
-      targetPort: 8082
+      port: 8081
+      targetPort: 8081
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: like-microservice-deployment
+  name: user-microservice-deployment
+  namespace: test
   labels:
-    app: like-microservice
+    app: user-microservice
 spec:
   selector:
     matchLabels:
-      app: like-microservice
+      app: user-microservice
   template:
     metadata:
-      namespace: test
       labels:
-        app: like-microservice
+        app: user-microservice
     spec:
       containers:
-        - name: like-microservice-c
-          image: continue3010/like-microservice:release
+        - name: user-microservice-c
+          image: datnguyen10102004/user-service:release
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://database-2.c0h8kgwiml6w.us-east-1.rds.amazonaws.com/likedb?useSSL=false&serverTimezone=UTC
+              value: jdbc:mysql://database-2.c0h8kgwiml6w.us-east-1.rds.amazonaws.com/userdb?useSSL=false&serverTimezone=UTC
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -47,8 +46,12 @@ spec:
                   name: mysql-secret
                   key: password
           resources:
-            limits:
-              memory: 128Mi
+            requests:
+              memory: 256Mi
               cpu: "0.25"
+            limits:
+              memory: 512Mi
+              cpu: "0.5"
           ports:
-            - containerPort: 8082
+            - containerPort: 8081
+          # Thêm health checks cho Spring Boot

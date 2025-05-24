@@ -1,1 +1,61 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-svc
+  namespace: staging
+  labels:
+    app: gateway
+spec:
+  selector:
+    app: gateway
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
 
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-deployment
+  namespace: staging
+  labels:
+    app: gateway
+spec:
+  selector:
+    matchLabels:
+      app: gateway
+  template:
+    metadata:
+      labels:
+        app: gateway
+    spec:
+      containers:
+        - name: gateway-c
+          image: datnguyen10102004/apigateway:test2
+          env:
+            - name: BLOG_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: api-configmap
+                  key: blog_service_url
+            - name: LIKE_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: api-configmap
+                  key: like_service_url
+            - name: USER_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: api-configmap
+                  key: user_service_url
+          resources:
+            limits:
+              cpu: "0.5" # 0.5 CPU (500 millicores)
+              memory: 512Mi # 512 MiB RAM
+            requests:
+              cpu: "0.25" # CPU tối thiểu
+              memory: 256Mi # RAM tối thiểu
+          ports:
+            - containerPort: 8080
