@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
         - name: frontend-c
-          image: continue3010/frontend:staged-964dce1103a004cd65c347ba873ecf8e47eef639
+          image: continue3010/frontend:staged-dddd132027a862ecdc9fd5c707125f519fe9e92d
           env:
           env:
             - name: REACT_APP_API
