@@ -29,11 +29,7 @@ spec:
     spec:
       containers:
         - name: frontend-c
-<<<<<<< HEAD
           image: datnguyen10102004/frontend:test2
-=======
-          image: continue3010/frontend:test-2d6e4bcad1cab6f52ccb0abcced277972386f8d2
->>>>>>> 9b93fd55619073bc6da6bc664b16308e7cea5d07
           env:
             - name: VITE_APP_API
               valueFrom:

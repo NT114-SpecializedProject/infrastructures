@@ -18,5 +18,5 @@ variable "availability_zones" {
 variable "cluster_names" {
   type        = list(string)
   description = "Kubernetes cluster name (used for tagging)"
-  default     = ["test-cluster", "staging-cluster", "prod-cluster"]
+  
 }
