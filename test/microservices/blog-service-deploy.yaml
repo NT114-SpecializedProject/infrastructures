@@ -10,8 +10,8 @@ spec:
   type: ClusterIP
   ports:
     - protocol: TCP
-      port: 8083
-      targetPort: 8083
+      port: 8082
+      targetPort: 8082
 
 ---
 apiVersion: apps/v1
@@ -22,6 +22,7 @@ metadata:
   labels:
     app: blog-microservice
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: blog-microservice
@@ -32,7 +33,7 @@ spec:
     spec:
       containers:
         - name: blog-microservice-c
-          image: continue3010/blog-microservice:release
+          image: datnguyen10102004/blog-service:release
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:mysql://database-2.c0h8kgwiml6w.us-east-1.rds.amazonaws.com/blogdb?useSSL=false&serverTimezone=UTC
@@ -51,4 +52,4 @@ spec:
               memory: 512Mi
               cpu: "0.5"
           ports:
-            - containerPort: 8083
+            - containerPort: 8082
