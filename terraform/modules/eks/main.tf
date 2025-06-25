@@ -17,7 +17,7 @@ resource "aws_eks_node_group" "node_group" {
   node_group_name = var.node_group_name
   node_role_arn   = var.node_iam_role_arn 
   subnet_ids      = var.subnet_ids
-  instance_type   =var.instance_type
+  instance_types   =var.instance_type
   scaling_config {
     desired_size = 2
     max_size     = 4
@@ -34,7 +34,7 @@ resource "aws_eks_node_group" "node_group" {
 resource "aws_eks_addon" "coredns" {
   cluster_name = var.cluster_name
   addon_name   = "coredns"
-  addon_version = "v1.11.1-eksbuild.4"
+ 
   depends_on   = [aws_eks_cluster.cluster]
 }
 
