@@ -21,6 +21,7 @@ metadata:
   labels:
     app: user-microservice
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: user-microservice

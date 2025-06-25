@@ -23,6 +23,7 @@ metadata:
   labels:
     app: gateway
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: gateway
@@ -33,7 +34,7 @@ spec:
     spec:
       containers:
         - name: gateway-c
-          image: datnguyen10102004/apigateway:test2
+          image: datnguyen10102004/api-gateway:release
           env:
             - name: BLOG_SERVICE_URL
               valueFrom:
