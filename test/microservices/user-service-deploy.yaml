@@ -31,10 +31,10 @@ spec:
     spec:
       containers:
         - name: user-microservice-c
-          image: datnguyen10102004/user-service:release
+          image: datnguyen10102004/user-service:v1.4
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://database-2.c0h8kgwiml6w.us-east-1.rds.amazonaws.com/userdb?useSSL=false&serverTimezone=UTC
+              value: jdbc:mysql://database-1.c0h8kgwiml6w.us-east-1.rds.amazonaws.com/user_microservice
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
