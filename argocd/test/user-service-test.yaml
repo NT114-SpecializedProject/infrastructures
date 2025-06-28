@@ -8,16 +8,16 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/DevOpsOrganization2025/infrastructures.git
+    repoURL: https://github.com/NT114-SpecializedProject/infrastructures.git
     targetRevision: HEAD
-    path: test
+    path: test/microservices/user-service
     directory:
       recurse: true
 
-  destination:
+  destination:  
   # Change this to K8S endpoint
     server: https://kubernetes.default.svc
-    namespace: app
+    namespace: test
 
   syncPolicy:
     syncOptions:

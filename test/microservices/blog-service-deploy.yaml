@@ -33,10 +33,10 @@ spec:
     spec:
       containers:
         - name: blog-microservice-c
-          image: datnguyen10102004/blog-service:release
+          image: datnguyen10102004/blog-service:release_v1.0
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://database-2.c0h8kgwiml6w.us-east-1.rds.amazonaws.com/blogdb?useSSL=false&serverTimezone=UTC
+              value: jdbc:mysql://database-1.c0h8kgwiml6w.us-east-1.rds.amazonaws.com/blog_microservice
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -47,9 +47,5 @@ spec:
                 secretKeyRef:
                   name: mysql-secret
                   key: password
-          resources:
-            limits:
-              memory: 512Mi
-              cpu: "0.5"
           ports:
             - containerPort: 8082

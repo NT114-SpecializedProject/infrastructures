@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
         - name: user-microservice-c
-          image: datnguyen10102004/user-service:v1.4
+          image: datnguyen10102004/user-service:release_v1.0
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:mysql://database-1.c0h8kgwiml6w.us-east-1.rds.amazonaws.com/user_microservice
@@ -48,11 +48,8 @@ spec:
                   key: password
           resources:
             requests:
-              memory: 256Mi
+              memory: 150Mi
               cpu: "0.25"
-            limits:
-              memory: 512Mi
-              cpu: "0.5"
           ports:
             - containerPort: 8081
           # Thêm health checks cho Spring Boot

@@ -6,7 +6,7 @@ metadata:
   labels:
     app: fullstack-microservices
 data:
-  gateway_url: "http://user-microservice-svc:8081"
-  blog_service_url: "http://blog-microservice-svc:8083"
-  like_service_url: "http://like-microservice-svc:8082"
+  gateway_url: "http://gateway-microservice-svc:8080"
   user_service_url: "http://user-microservice-svc:8081"
+  blog_service_url: "http://blog-microservice-svc:8082"
+  like_service_url: "http://like-microservice-svc:8083"
