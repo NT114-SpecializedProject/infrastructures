@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
         - name: user-microservice-c
-          image: datnguyen10102004/user-service:release_v1.0
+          image: datnguyen10102004/user-service:9d549ffed08e9bf70495b4c18a7b71110cff5cfb
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:mysql://centerbeam.proxy.rlwy.net:34117/user_microservice
