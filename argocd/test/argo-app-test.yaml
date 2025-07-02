@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/NT114-SpecializedProject/infrastructures.git
     targetRevision: HEAD
-    path: test/microservices/user-service
+    path: test/microservices
     directory:
       recurse: true
 
