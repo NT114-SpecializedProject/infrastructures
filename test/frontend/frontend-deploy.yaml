@@ -9,15 +9,13 @@ spec:
   type: ClusterIP
   ports:
     - port: 80
-      targetPort: 5173
+      targetPort: 80
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-deployment
   namespace: test
-metadata:
-  name: frontend-deployment
 spec:
   selector:
     matchLabels:
@@ -29,12 +27,6 @@ spec:
     spec:
       containers:
         - name: frontend-c
-          image: datnguyen10102004/frontend:release_v1.1
-          env:
-            - name: VITE_API_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: api-configmap
-                  key: gateway_url
+          image: datnguyen10102004/frontend:release_v1.4
           ports:
-            - containerPort: 5173
+            - containerPort: 80
