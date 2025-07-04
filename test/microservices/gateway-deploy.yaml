@@ -18,7 +18,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gateway-deployment
+  name: gateway-microservice-deployment
   namespace: test
   labels:
     app: gateway
@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
         - name: gateway-c
-          image: datnguyen10102004/api-gateway:release_v1.0
+          image: datnguyen10102004/gateway:release_v2.0
           env:
             - name: BLOG_SERVICE_URL
               valueFrom:
@@ -51,9 +51,5 @@ spec:
                 configMapKeyRef:
                   name: api-configmap
                   key: user_service_url
-          resources:
-            requests:
-              cpu: "0.17" # CPU tối thiểu
-              memory: 150Mi # RAM tối thiểu
           ports:
             - containerPort: 8080

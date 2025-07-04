@@ -33,10 +33,10 @@ spec:
     spec:
       containers:
         - name: blog-microservice-c
-          image: datnguyen10102004/blog-service:release_v1.0
+          image: datnguyen10102004/blog-service:release_v2.0
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://database-1.c0h8kgwiml6w.us-east-1.rds.amazonaws.com/blog_microservice
+              value: jdbc:mysql://centerbeam.proxy.rlwy.net:34117/blog_microservice
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:

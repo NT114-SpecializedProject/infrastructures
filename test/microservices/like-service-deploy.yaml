@@ -10,14 +10,15 @@ spec:
   type: ClusterIP
   ports:
     - protocol: TCP
-      port: 8082
-      targetPort: 8082
+      port: 8085
+      targetPort: 8085
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: like-microservice-deployment
+  namespace: test
   labels:
     app: like-microservice
 spec:
@@ -32,10 +33,10 @@ spec:
     spec:
       containers:
         - name: like-microservice-c
-          image: continue3010/like-microservice:release
+          image: datnguyen10102004/like-service:release_v1.0
           env:
-            - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://database-2.c0h8kgwiml6w.us-east-1.rds.amazonaws.com/likedb?useSSL=false&serverTimezone=UTC
+            - name: SPRING_DATASOURCE_URL 
+              value: jdbc:mysql://centerbeam.proxy.rlwy.net:34117/like_microservice
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -46,9 +47,10 @@ spec:
                 secretKeyRef:
                   name: mysql-secret
                   key: password
-          resources:
-            limits:
-              memory: 128Mi
-              cpu: "0.25"
+            - name: BLOG_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: api-configmap
+                  key: blog_service_url
           ports:
-            - containerPort: 8082
+            - containerPort: 8085

@@ -46,10 +46,6 @@ spec:
                 secretKeyRef:
                   name: mysql-secret
                   key: password
-          resources:
-            requests:
-              memory: 150Mi
-              cpu: "0.25"
           ports:
             - containerPort: 8081
           # Thêm health checks cho Spring Boot
