@@ -33,7 +33,7 @@ jobs:
 
       - name: Confirm Destroy
         uses: hashicorp/tfc-workflows-github/actions/apply-run@v1.0.0
-        if: fromJSON(steps.destroy-run.outputs.payload).data.attributes.actions.IsConfirmable
+        if: always()
         id: destroy-apply
         with:
           run: ${{ steps.destroy-run.outputs.run_id }}
