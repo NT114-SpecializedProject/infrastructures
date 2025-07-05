@@ -1,9 +1,21 @@
 name: Terraform Plan
 
-on: workflow_dispatch:{}
+on: 
+  push:
+    branches-ignore:
+      - main
+    branches:
+      - staging
+      - test
+  pull_request:
+    branches:
+      - main
+      - staging
+      - test
+  workflow_dispatch:
 
 env:
-  TF_CLOUD_ORGANIZATION: "DevOpsOrg2025"
+  TF_CLOUD_ORGANIZATION: "NT114-SpecializedProject"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
   TF_WORKSPACE: "terraform-github-actions"
   CONFIG_DIRECTORY: "./terraform/"
