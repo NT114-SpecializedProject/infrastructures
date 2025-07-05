@@ -1,17 +1,6 @@
 name: Terraform Plan
 
-on: 
-  push:
-    branches-ignore:
-      - main
-    branches:
-      - staging
-      - test
-  pull_request:
-    branches:
-      - main
-      - staging
-      - test
+on:
   workflow_dispatch:
 
 env:
