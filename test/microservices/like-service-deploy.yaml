@@ -36,7 +36,10 @@ spec:
           image: datnguyen10102004/like-service:release_v1.0
           env:
             - name: SPRING_DATASOURCE_URL 
-              value: jdbc:mysql://centerbeam.proxy.rlwy.net:34117/like_microservice
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: like-datasource-url
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:

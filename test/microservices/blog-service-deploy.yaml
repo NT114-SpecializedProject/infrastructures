@@ -36,7 +36,10 @@ spec:
           image: datnguyen10102004/blog-service:release_v2.0
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://centerbeam.proxy.rlwy.net:34117/blog_microservice
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: blog-datasource-url
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:

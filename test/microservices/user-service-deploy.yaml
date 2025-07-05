@@ -35,7 +35,10 @@ spec:
           image: datnguyen10102004/user-service:test-895fb8b2999b8e99eecf1e9964d1f7fae8bdf352
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://centerbeam.proxy.rlwy.net:34117/user_microservice
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: user-datasource-url
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
