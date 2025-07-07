@@ -1,0 +1,54 @@
+# BLOG_MICROSERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: blog-microservice-svc
+  namespace: test
+spec:
+  selector:
+    app: blog-microservice
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8082
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog-microservice-deployment
+  namespace: test
+  labels:
+    app: blog-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blog-microservice
+  template:
+    metadata:
+      labels:
+        app: blog-microservice
+    spec:
+      containers:
+        - name: blog-microservice-c
+          image: datnguyen10102004/blog-service:release_v2.0
+          env:
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: blog-datasource-url
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: user
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: password
+          ports:
+            - containerPort: 8082

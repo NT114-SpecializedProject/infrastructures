@@ -1,2 +1,5 @@
 data-config.yaml
 .terraform/
+test/secret-config
+staging/secret-config
+production/secret-config

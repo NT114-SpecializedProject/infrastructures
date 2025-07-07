@@ -1,0 +1,59 @@
+# like_MICROSERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: like-microservice-svc
+  namespace: test
+spec:
+  selector:
+    app: like-microservice
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 8085
+      targetPort: 8085
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: like-microservice-deployment
+  namespace: test
+  labels:
+    app: like-microservice
+spec:
+  selector:
+    matchLabels:
+      app: like-microservice
+  template:
+    metadata:
+      namespace: test
+      labels:
+        app: like-microservice
+    spec:
+      containers:
+        - name: like-microservice-c
+          image: datnguyen10102004/like-service:release_v1.0
+          env:
+            - name: SPRING_DATASOURCE_URL 
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: like-datasource-url
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: user
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: password
+            - name: BLOG_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: api-configmap
+                  key: blog_service_url
+          ports:
+            - containerPort: 8085
