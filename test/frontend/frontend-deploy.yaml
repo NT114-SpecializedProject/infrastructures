@@ -27,6 +27,6 @@ spec:
     spec:
       containers:
         - name: frontend-c
-          image: datnguyen10102004/frontend:test-652ee9324333c47c97d7c1d8e191eb9b9d8b128c
+          image: datnguyen10102004/frontend:test-423986822cacc5822a955ce33e7bb1708a7cd597
           ports:
             - containerPort: 80
