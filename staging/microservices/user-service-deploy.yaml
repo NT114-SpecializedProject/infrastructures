@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: user-microservice-svc
-  namespace: test
+  namespace: staging
 spec:
   selector:
     app: user-microservice
@@ -17,7 +17,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: user-microservice-deployment
-  namespace: test
+  namespace: staging
   labels:
     app: user-microservice
 spec:
@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
         - name: user-microservice-c
-          image: datnguyen10102004/user-service:test-895fb8b2999b8e99eecf1e9964d1f7fae8bdf352
+          image: datnguyen10102004/user-service:staging-895fb8b2999b8e99eecf1e9964d1f7fae8bdf352
           env:
             - name: SPRING_DATASOURCE_URL
               valueFrom:

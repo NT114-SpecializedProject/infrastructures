@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: like-microservice-svc
-  namespace: test
+  namespace: production
 spec:
   selector:
     app: like-microservice
@@ -18,7 +18,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: like-microservice-deployment
-  namespace: test
+  namespace: production
   labels:
     app: like-microservice
 spec:
@@ -27,7 +27,7 @@ spec:
       app: like-microservice
   template:
     metadata:
-      namespace: test
+      namespace: production
       labels:
         app: like-microservice
     spec:
