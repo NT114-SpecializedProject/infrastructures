@@ -1,4 +1,3 @@
-
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -10,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/NT114-SpecializedProject/infrastructures.git
     targetRevision: HEAD
-    path: test/microservices
+    path: test
     directory:
       recurse: true
 
